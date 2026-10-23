@@ -1,0 +1,22 @@
+# Nazzan · redireciona as URLs do site antigo (WordPress) para as seções da página nova.
+# Resolve os 404 de /residencias e /corporativo e mantém links salvos e indexados.
+
+RewriteEngine On
+
+RewriteRule ^sobre/?$          /#manifesto  [R=301,NE,L]
+RewriteRule ^projetos/?$       /#projetos   [R=301,NE,L]
+RewriteRule ^portfolio/?$      /#projetos   [R=301,NE,L]
+RewriteRule ^contato/?$        /#orcamento  [R=301,NE,L]
+RewriteRule ^interiores/?$     /#ambientes  [R=301,NE,L]
+RewriteRule ^residencias/?$    /#ambientes  [R=301,NE,L]
+RewriteRule ^corporativo/?$    /?ambiente=corporativo#orcamento [R=301,NE,L]
+
+# Cache de arquivos estáticos
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png  "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType text/css   "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
