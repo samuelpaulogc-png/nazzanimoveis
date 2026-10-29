@@ -138,7 +138,11 @@
 
   async function entrada() {
     try {
-      if (!movimento.matches) preparaPalavras();
+      if (doc.classList.contains("is-intro")) {
+        hero.querySelectorAll("[data-intro-src]").forEach((img) => { img.src = img.dataset.introSrc; });
+        if (!movimento.matches) preparaPalavras();
+      }
+      if (!galeria.children.length) {
       for (let f = 0; f < 5; f++) {
         const fileira = document.createElement("div");
         fileira.className = "hero__fileira";
@@ -156,7 +160,8 @@
         galeria.append(fileira);
       }
 
-      if (movimento.matches) {
+      }
+      if (movimento.matches || !doc.classList.contains("is-intro")) {
         conclui();
         return;
       }

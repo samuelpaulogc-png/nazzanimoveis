@@ -628,7 +628,16 @@
     });
 
     // Pré-carrega as fotos para a troca não piscar
-    fotos.forEach((f) => { const img = $("img", f); img.loading = "eager"; img.decode?.().catch(() => {}); });
+    const preparaFotos = () => fotos.forEach((f) => {
+      const img = $("img", f); img.loading = "eager"; img.decode?.().catch(() => {});
+    });
+    if ("IntersectionObserver" in window) {
+      const preparo = new IntersectionObserver(([entrada]) => {
+        if (!entrada.isIntersecting) return;
+        preparaFotos(); preparo.disconnect();
+      }, { rootMargin: "100% 0px" });
+      preparo.observe(pino);
+    } else preparaFotos();
     encaixa();
     preparaCelular();
     return { anima, encaixa, preso };

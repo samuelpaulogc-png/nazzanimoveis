@@ -2,6 +2,21 @@
 
 Página estática (HTML, CSS e JS puros, sem build). Base: `DNA.md` v1.3 e `copy-landing-page-v3-compacta.md`.
 
+## Versão otimizada — 29/10/2026
+
+A primeira tela exibe título, fotos e orçamento imediatamente. A abertura cinematográfica completa permanece em `?abertura=1`. Imagens responsivas, AVIF com fallback WebP na hero, fontes Inter Tight 400/500 locais e Lenis 1.1.20 local. As mídias das demais seções carregam conforme a aproximação.
+
+O HTML usa `css/site-<hash>.min.css` e `js/site-<hash>.min.js`. Os fontes legíveis permanecem em `css/` e `js/`. Após editar os fontes, regenere os compactados e envie também o HTML atualizado:
+
+```sh
+npm install --prefix .preview/performance-2026-10-29/tools esbuild
+node scripts/otimizar-assets.cjs
+```
+
+O site é estático e já inclui os arquivos gerados: a hospedagem não precisa executar Node.js. Não editar os compactados manualmente.
+
+Lighthouse local com gzip: desempenho mobile 90–95 (mediana 92 em três execuções), desktop 100; acessibilidade, boas práticas e SEO 100. Transferência inicial reduzida de cerca de 10,3 MiB para 341 KiB. Esses resultados são de laboratório local; a nota pública depende de uma nova medição após o deploy.
+
 ## Ver localmente
 
 ```bash
@@ -64,7 +79,7 @@ Padrões tirados de Find, Springs e Hofstaetter. Os detalhes estão em `estudo-r
 - **Atmosfera (ref.: Springs):** degradês verdes e dourados se movem devagar no fundo das seções escuras e do rodapé.
 - **Rodapé:** "NAZZAN" em largura total.
 
-Antes de publicar: hospedar o `lenis.min.js` no próprio servidor (hoje vem do unpkg).
+Lenis 1.1.20 e as fontes Inter Tight são servidos localmente desde 29/10/2026.
 
 ## Modo de revisão
 

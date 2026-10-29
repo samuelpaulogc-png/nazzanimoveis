@@ -1,14 +1,7 @@
 /* Versão aprovada do protótipo 03, isolada nos três painéis de fechamento. */
-@font-face {
-  font-family: 'Inter Tight Fechos';
-  src: url('../assets/fonts/inter-tight-regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 .fv {
   grid-column: 1 / -1;
-  font-family: 'Inter Tight Fechos', var(--fonte);
+  font-family: var(--fonte);
   font-weight: 400;
   scroll-margin-top: 112px;
   position: relative;

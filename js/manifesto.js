@@ -112,6 +112,16 @@
   }
   const montagem = () => (quadros ? desenhaQuadro() : buscaQuadro());
 
+  let midiaIniciada = false;
+  function preparaMidia() {
+    if (midiaIniciada || !video) return;
+    midiaIniciada = true;
+    raiz.querySelectorAll("[data-orbita-src]").forEach((img) => {
+      img.srcset = img.dataset.orbitaSrcset;
+      img.src = img.dataset.orbitaSrc;
+      img.loading = "eager";
+      img.decode?.().catch(() => {});
+    });
   if (video && video.dataset.quadros && matchMedia("(max-width: 720px)").matches) {
     const n = Number(video.dataset.quadrosN), pasta = video.dataset.quadros;
     const tela = document.createElement("canvas");
@@ -148,6 +158,7 @@
       video.src = URL.createObjectURL(b);
       video.play().then(() => { video.pause(); buscaQuadro(); }).catch(() => {});
     }).catch(() => { video.src = arquivo; });
+  }
   }
   /* Linhas como no SplitText (type: "lines", mask: "lines"): as palavras correm na largura do
      parágrafo e o JS agrupa as que caem na mesma linha, cada grupo numa máscara.
@@ -197,6 +208,8 @@
     const s = Math.max(0, raiz.offsetHeight / u - 1);
     const bruto = clamp((scrollY - (raiz.getBoundingClientRect().top + scrollY)) / u, 0, s);
     const e = Math.max(0, bruto - (camadaHero ? HERO : 0));
+    // A montagem comeca varias telas depois: antecipar so quando houver rolagem.
+    if (bruto > .15) preparaMidia();
     const saida = suave(e, SAIDA[0], SAIDA[1]);
     const abre = suave(e, ABERTURA[0], ABERTURA[1]);
     const raioBase = RAIO * Math.min(vw, vh);
@@ -269,5 +282,5 @@
   quadro();
 
   // Pré-carrega as fotos
-  raiz.querySelectorAll("img").forEach((img) => { img.loading = "eager"; img.decode?.().catch(() => {}); });
+  // Fotos abaixo da primeira tela seguem loading="lazy"; a hero ja esta no HTML.
 })();

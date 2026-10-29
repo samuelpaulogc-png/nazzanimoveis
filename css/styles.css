@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../assets/fonts/inter-tight-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Tight";
+  src: url("../assets/fonts/inter-tight-500-latin.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 /* =========================================================
    Nazzan, Móveis Sob Medida · landing page
    Base: resultado/DNA.md (v1.3) · copy v3 compacta
@@ -17,7 +31,7 @@
   /* Texto */
   --txt: rgba(28, 28, 28, .86);
   --txt-forte: #1C1C1C;
-  --txt-suave: rgba(28, 28, 28, .56);
+  --txt-suave: rgba(28, 28, 28, .64);
   --txt-apagado: rgba(28, 28, 28, .3);
   --creme-80: rgba(253, 249, 244, .8);
   --creme-60: rgba(253, 249, 244, .6);
@@ -421,7 +435,7 @@ body.menu-aberto { overflow: hidden; }
 /* ---------- 3. Do projeto à montagem (protótipo 05, ref.: Bloom) ----------
    Valores iguais aos do protótipo 05; o cinza apagado dele fica no próprio bloco. */
 .pr__pino {
-  --txt-apagado: rgba(28, 28, 28, .32);
+  --txt-apagado: rgba(28, 28, 28, .54);
   margin-top: clamp(104px, 12vw, 176px);
 }
 
@@ -1056,6 +1070,7 @@ body { overflow-x: clip; }
 .a3__dica.is-movimento-pausado span { animation-play-state: paused; }
 .hero__fileira:nth-child(even) { animation-direction: reverse; animation-duration: 130s; }
 .hero__fileira figure { flex: none; width: clamp(220px, 24vw, 390px); aspect-ratio: 256 / 332; margin-right: clamp(20px, 2.4vw, 38px); overflow: hidden; }
+.hero__fileira picture { display: contents; }
 .hero__fileira img { width: 100%; height: 100%; object-fit: cover; }
 @keyframes fileira { to { transform: translate3d(-50%, 0, 0); } }
 
